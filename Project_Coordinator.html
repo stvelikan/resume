@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Project Coordinator | Специалист по сопровождению IT-проектов</title>
+    <!-- Google Fonts для современной типографики -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (free icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            color: #0f172a;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* контейнер с отступами */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* ========== 1. СОВРЕМЕННЫЙ ГРАДИЕНТНЫЙ ЗАГОЛОВОК ========== */
+        .hero {
+            margin-bottom: 3rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding-bottom: 2rem;
+        }
+        .gradient-title {
+            font-size: clamp(2.2rem, 6vw, 3.8rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #1E2B6E, #2563EB, #38BDF8);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 6s ease infinite;
+            margin-bottom: 0.75rem;
+        }
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .hero-sub {
+            font-size: 1.25rem;
+            color: #334155;
+            font-weight: 500;
+            border-left: 4px solid #3b82f6;
+            display: inline-block;
+            padding-left: 1rem;
+            background: #f1f5f9;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            backdrop-filter: blur(2px);
+        }
+
+        /* карточки навыков (skill cards) с анимацией при наведении */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin: 2.5rem 0 3rem;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem 1.2rem;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.02);
+            transition: all 0.35s cubic-bezier(0.2, 0, 0, 1);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .skill-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 35px -12px rgba(0, 67, 156, 0.15);
+            border-color: #b9d0f8;
+            background: linear-gradient(145deg, #ffffff, #f9fcfd);
+        }
+        .skill-icon {
+            font-size: 2.2rem;
+            color: #2563eb;
+            background: #eef4ff;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            transition: 0.2s;
+        }
+        .skill-card:hover .skill-icon {
+            background: #2563eb;
+            color: white;
+            transform: scale(1.03);
+        }
+        .skill-text h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            color: #0f172a;
+        }
+        .skill-text p {
+            color: #334155;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* визуальная иерархия: секции */
+        section {
+            margin-bottom: 3rem;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 55%;
+            height: 4px;
+            background: linear-gradient(90deg, #2563eb, #93c5fd);
+            border-radius: 4px;
+        }
+        .accent-text {
+            background: linear-gradient(120deg, #e0f2fe 0%, #bfdbfe 100%);
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        /* опыт работы (список) */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+        .exp-item {
+            background: white;
+            border-radius: 1.2rem;
+            padding: 1.4rem 1.8rem;
+            border-left: 5px solid #3b82f6;
+            box-shadow: 0 5px 14px rgba(0,0,0,0.02);
+            transition: 0.2s;
+        }
+        .exp-item:hover {
+            background: #ffffff;
+            box-shadow: 0 12px 20px -10px rgba(0,0,0,0.08);
+        }
+        .exp-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.8rem;
+        }
+        .exp-role {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+        .exp-date {
+            font-weight: 500;
+            color: #4b5563;
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+        }
+        .exp-desc {
+            color: #1e293b;
+            padding-left: 0.5rem;
+            list-style-type: none;
+        }
+        .exp-desc li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.6rem;
+        }
+        .exp-desc li i {
+            color: #2563eb;
+            font-size: 0.8rem;
+            margin-top: 0.2rem;
+            width: 1rem;
+        }
+
+        /* 4. примеры кейсов в выделенных блоках */
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0 1rem;
+        }
+        .case-card {
+            background: linear-gradient(135deg, #ffffff, #fefefe);
+            border-radius: 1.5rem;
+            padding: 1.6rem;
+            border: 1px solid #e0e7ff;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.03);
+        }
+        .case-card:hover {
+            border-color: #60a5fa;
+            transform: scale(1.01);
+            background: white;
+            box-shadow: 0 20px 30px -12px rgba(37,99,235,0.12);
+        }
+        .case-icon {
+            font-size: 2rem;
+            color: #2563eb;
+            margin-bottom: 1rem;
+        }
+        .case-card h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.7rem;
+        }
+        .case-card p {
+            color: #334155;
+            font-size: 0.9rem;
+        }
+
+        /* 5. сетка инструментов в виде тегов */
+        .tools-tag-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+        }
+        .tech-tag {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.2rem;
+            font-weight: 500;
+            font-size: 0.85rem;
+            color: #1e40af;
+            border: 1px solid #cbdffc;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(4px);
+        }
+        .tech-tag i {
+            font-size: 0.9rem;
+            color: #3b82f6;
+        }
+        .tech-tag:hover {
+            background: #2563eb;
+            color: white;
+            transform: translateY(-3px);
+            border-color: #2563eb;
+            box-shadow: 0 10px 15px -7px #2563eb40;
+        }
+        .tech-tag:hover i {
+            color: white;
+        }
+
+        /* Доп. образование и блоки */
+        .edu-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .edu-badge {
+            background: #f1f5f9;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-left: 3px solid #2563eb;
+        }
+        .strengths {
+            background: #f0f9ff;
+            border-radius: 1.2rem;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            border: 1px solid #b9d9fd;
+        }
+
+        /* адаптивность */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.2rem 1rem;
+            }
+            .hero-sub {
+                font-size: 1rem;
+            }
+            .exp-header {
+                flex-direction: column;
+                gap: 0.4rem;
+            }
+            .skill-card {
+                padding: 1.2rem;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .case-card {
+                padding: 1.2rem;
+            }
+        }
+
+        /* прочие стили */
+        hr {
+            margin: 1.5rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(90deg, #cbd5e1, transparent);
+        }
+        .profile-text {
+            background: #ffffffcc;
+            backdrop-filter: blur(2px);
+            padding: 1.2rem 1.5rem;
+            border-radius: 1.2rem;
+            border: 1px solid #eef2ff;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #1e293b;
+        }
+        .flex-profile {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+        i.fa, i.far, i.fas {
+            margin-right: 4px;
+        }
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            padding-top: 2rem;
+            color: #5b6e8c;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 1rem;
+        }
+        /* декоративный разделитель вместо контактов */
+        .footer-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #6c86a3;
+            letter-spacing: 0.3px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 1. Градиентный заголовок с прозрачностью текста (имя удалено) -->
+    <div class="hero">
+        <h1 class="gradient-title">Project Coordinator<br>Специалист по сопровождению IT-проектов</h1>
+        <div class="hero-sub">
+            <i class="fas fa-chalkboard-user"></i> Управление процессами | Финансы | Документооборот | IT-координация
+        </div>
+    </div>
+
+    <!-- Профиль -->
+    <section>
+        <h2 class="section-title">Профиль</h2>
+        <div class="profile-text">
+            <i class="fas fa-user-check" style="color:#2563eb; margin-right: 8px;"></i> 
+            Специалист по сопровождению и координации проектов в управлении процессами, финансами и документооборотом. 
+            Имею опыт работы в сложных, многокомпонентных проектах, выстраивания систем учета, контроля сроков, бюджетов 
+            и исполнения обязательств. Сильна в <span class="accent-text">структурировании процессов</span>, координации участников, 
+            работе с отчетностью, договорами и учетными системами (1С, Excel, ERP). Ориентирована на развитие в сфере IT 
+            и сопровождения IT-проектов, внедрения систем и цифровых процессов.
+        </div>
+    </section>
+
+    <!-- 2. Карточки ключевых навыков с анимацией при наведении -->
+    <section>
+        <h2 class="section-title">Ключевые навыки</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-tasks"></i></div>
+                <div class="skill-text">
+                    <h3>Сопровождение и координация проектов</h3>
+                    <p>Полный цикл от инициации до закрытия, контроль исполнения</p>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="skill-text">
+                    <h3>Контроль сроков, бюджетов, задач</h3>
+                    <p>План-факт анализ, управление отклонениями</p>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-people-arrows"></i></div>
+                <div class="skill-text">
+                    <h3>Взаимодействие с командами</h3>
+                    <p>Разработка, аналитики, подрядчики, заказчики</p>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-laptop-code"></i></div>
+                <div class="skill-text">
+                    <h3>Внедрение IT-систем</h3>
+                    <p>Участие во внедрении и развитии 1С ERP, интеграции</p>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-diagram-project"></i></div>
+                <div class="skill-text">
+                    <h3>Оптимизация процессов</h3>
+                    <p>Описание, регламентация, автоматизация</p>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-table"></i></div>
+                <div class="skill-text">
+                    <h3>1С (ERP) + Excel (продвинутый)</h3>
+                    <p>Сводные таблицы, дашборды, моделирование</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Опыт работы (визуальная иерархия) -->
+    <section>
+        <h2 class="section-title">Опыт работы</h2>
+        <div class="timeline">
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-role">Финансовый директор</div>
+                    <div class="exp-date">2023 – 2025</div>
+                </div>
+                <ul class="exp-desc">
+                    <li><i class="fas fa-check-circle"></i> Координация портфеля проектов, внедрение 1С:ERP и IT-инструментов.</li>
+                    <li><i class="fas fa-check-circle"></i> Роль заказчика со стороны бизнеса при доработке учетных систем.</li>
+                    <li><i class="fas fa-check-circle"></i> Разработка системы проектного учета: план-факт анализ, контроль отклонений.</li>
+                    <li><i class="fas fa-check-circle"></i> Координация бизнес-подразделений, IT, бухгалтерии, подрядчиков.</li>
+                    <li><i class="fas fa-check-circle"></i> Сопровождение госконтрактов, казначейское сопровождение, раздельные счета.</li>
+                </ul>
+            </div>
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-role">Начальник финансового отдела</div>
+                    <div class="exp-date">2021 – 2023</div>
+                </div>
+                <ul class="exp-desc">
+                    <li><i class="fas fa-check-circle"></i> Контроль исполнения обязательств, сроков, корректности расчетов.</li>
+                    <li><i class="fas fa-check-circle"></i> Координация работы с банками, снижение затрат компании за счет оптимизации процессов.</li>
+                </ul>
+            </div>
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-role">Финансовый менеджер</div>
+                    <div class="exp-date">2019 – 2021</div>
+                </div>
+                <ul class="exp-desc">
+                    <li><i class="fas fa-check-circle"></i> Ведение бюджетов проектов, графиков платежей, контроль задолженности.</li>
+                    <li><i class="fas fa-check-circle"></i> Подготовка финансовых отчетов и расчетов для банков.</li>
+                </ul>
+            </div>
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-role">Финансовый менеджер</div>
+                    <div class="exp-date">Фев 2018 – Апр 2019</div>
+                </div>
+                <ul class="exp-desc">
+                    <li><i class="fas fa-check-circle"></i> Ведение контрактной базы и графиков ДДС, контроль исполнения обязательств.</li>
+                </ul>
+            </div>
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-role">Специалист отдела закупок</div>
+                    <div class="exp-date">Апр 2014 – Фев 2018</div>
+                </div>
+                <ul class="exp-desc">
+                    <li><i class="fas fa-check-circle"></i> Закупка материалов и оборудования, контроль взаиморасчетов, претензионная работа.</li>
+                </ul>
+            </div>
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-role">Заместитель главного бухгалтера</div>
+                    <div class="exp-date">Ноя 2012 – Апр 2014</div>
+                </div>
+                <ul class="exp-desc">
+                    <li><i class="fas fa-check-circle"></i> Расчеты с поставщиками, составление бухгалтерской и налоговой отчетности.</li>
+                    <li><i class="fas fa-check-circle"></i> Взаимодействие с налоговыми органами.</li>
+                </ul>
+            </div>
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-role">Ранний опыт (2007–2012)</div>
+                    <div class="exp-date">Бухгалтер-экономист / логистика</div>
+                </div>
+                <ul class="exp-desc">
+                    <li><i class="fas fa-check-circle"></i> Бухгалтер-экономист, ассистент логистики, помощник оператора. Документооборот, учетные системы, базы данных.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Примеры кейсов в выделенных блоках (Кейсы из описания деятельности) -->
+    <section>
+        <h2 class="section-title">Ключевые проекты & кейсы</h2>
+        <div class="case-grid">
+            <div class="case-card">
+                <div class="case-icon"><i class="fas fa-chart-pie"></i></div>
+                <h4>Внедрение проектного учета в 1С:ERP</h4>
+                <p>Разработка системы план-факт анализа, сбор фактических данных, контроль отклонений — повышение прозрачности бюджетирования на 35%.</p>
+            </div>
+            <div class="case-card">
+                <div class="case-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                <h4>Казначейское сопровождение госконтрактов</h4>
+                <p>Организация отчетности для особых требований, раздельные счета, полный контроль расходования средств в крупном проекте.</p>
+            </div>
+            <div class="case-card">
+                <div class="case-icon"><i class="fas fa-microchip"></i></div>
+                <h4>Автоматизация процессов закупок</h4>
+                <p>Внедрение системы согласования, интеграция с ERP, сокращение сроков обработки заявок на 25%.</p>
+            </div>
+            <div class="case-card">
+                <div class="case-icon"><i class="fas fa-charging-station"></i></div>
+                <h4>IT-координация внедрения цифровых инструментов</h4>
+                <p>Мост между бизнес-юнитами и разработкой, успешный запуск модуля отчетности за 4 месяца.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Сетка инструментов в виде тегов (технологии + софт) -->
+    <section>
+        <h2 class="section-title">Инструменты & технологии</h2>
+        <div class="tools-tag-grid">
+            <span class="tech-tag"><i class="fab fa-1c"></i> 1С:ERP</span>
+            <span class="tech-tag"><i class="fas fa-file-excel"></i> Excel (продвинутый)</span>
+            <span class="tech-tag"><i class="fas fa-cloud-upload-alt"></i> ERP-системы</span>
+            <span class="tech-tag"><i class="fas fa-chart-simple"></i> Power BI</span>
+            <span class="tech-tag"><i class="fas fa-code-branch"></i> Jira / Confluence</span>
+            <span class="tech-tag"><i class="fas fa-tasks"></i> Trello</span>
+            <span class="tech-tag"><i class="fas fa-database"></i> SQL (базовый)</span>
+            <span class="tech-tag"><i class="fas fa-project-diagram"></i> BPMN</span>
+            <span class="tech-tag"><i class="fas fa-handshake"></i> Договорная работа</span>
+            <span class="tech-tag"><i class="fas fa-calculator"></i> Финансовое моделирование</span>
+        </div>
+    </section>
+
+    <!-- Дополнительное образование + сильные стороны -->
+    <section>
+        <h2 class="section-title">Дополнительное образование</h2>
+        <div class="edu-grid">
+            <div class="edu-badge"><i class="fas fa-certificate"></i> IFRS — 2024</div>
+            <div class="edu-badge"><i class="fas fa-chart-line"></i> Финансы предприятия — 2019–2020</div>
+            <div class="edu-badge"><i class="fas fa-users"></i> Финансы для нефинансовых менеджеров — 2018</div>
+        </div>
+        
+        <div class="strengths">
+            <h3 style="display: flex; gap: 10px; align-items: center; margin-bottom: 12px;"><i class="fas fa-brain" style="color:#2563eb;"></i> Сильные стороны</h3>
+            <p style="font-weight: 500;">✔ Системное мышление &nbsp;|&nbsp; ✔ Структурирование информации &nbsp;|&nbsp; ✔ Надежность &nbsp;|&nbsp; ✔ Работа с процессами и системами &nbsp;|&nbsp; ✔ Взаимодействие между бизнесом и IT</p>
+        </div>
+    </section>
+
+    <!-- Футер без контактных данных и имени -->
+    <footer>
+        <div class="footer-note">
+            <i class="fas fa-briefcase"></i> Project Coordinator & IT-Project Support Specialist
+        </div>
+    </footer>
+</div>
+</body>
+</html>
